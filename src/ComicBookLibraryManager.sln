@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComicBookShared", "ComicBookShared\ComicBookShared.csproj", "{7471CF87-CC69-4D2B-927C-46E223E0A86B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComicBookLibraryManager", "LibraryManager\ComicBookLibraryManager.csproj", "{97E32E5E-8369-4033-8859-6BF8DD4B3F74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComicBookLibraryManager", "ComicBookLibraryManager\ComicBookLibraryManager.csproj", "{942339E8-F775-454B-AE39-A87DA5843EFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{7471CF87-CC69-4D2B-927C-46E223E0A86B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7471CF87-CC69-4D2B-927C-46E223E0A86B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7471CF87-CC69-4D2B-927C-46E223E0A86B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{97E32E5E-8369-4033-8859-6BF8DD4B3F74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97E32E5E-8369-4033-8859-6BF8DD4B3F74}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97E32E5E-8369-4033-8859-6BF8DD4B3F74}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97E32E5E-8369-4033-8859-6BF8DD4B3F74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{942339E8-F775-454B-AE39-A87DA5843EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{942339E8-F775-454B-AE39-A87DA5843EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{942339E8-F775-454B-AE39-A87DA5843EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{942339E8-F775-454B-AE39-A87DA5843EFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
