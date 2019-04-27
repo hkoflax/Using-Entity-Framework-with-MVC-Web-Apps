@@ -33,16 +33,17 @@ namespace ComicBookLibraryManagerWebApp.ViewModels
         /// <summary>
         /// Initializes the view model.
         /// </summary>
-        public override void Init()
+        public override void Init(Context context)
         {
-            base.Init();
+            base.Init(context);
 
             ArtistSelectListItems = new SelectList(
-                new List<Artist>(), // TODO Get the artitsts list.
-                "Id", "Name");
+                context.Artists.OrderBy(a => a.Name).ToList(),"Id","Name");
+            // TODO Get the artitsts list.
+
             RoleSelectListItems = new SelectList(
-                new List<Role>(), // TODO Get the roles list.
-                "Id", "Name");
+                context.Roles.OrderBy(r => r.Name).ToList(),"Id","Name");
+                // TODO Get the roles list.
         }
     }
 }
