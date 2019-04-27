@@ -9,20 +9,20 @@ namespace ComicBooklibraryManagerWebApp.Controllers
 {
     public abstract class BaseController: Controller
     {
-        private Context _context = null;
+        protected Context Context { get; private set; }
         protected Repository Repository { get; private set; }
         private bool _disposed = false;
         public BaseController()
         {
-            _context = new Context();
-            Repository = new Repository(_context);
+           Context = new Context();
+            Repository = new Repository(Context);
         }
         protected override void Dispose(bool disposing)
         {
             if (_disposed) return;
             if (disposing)
             {
-                _context.Dispose();
+                Context.Dispose();
             }
             _disposed = true;
             base.Dispose(disposing);
