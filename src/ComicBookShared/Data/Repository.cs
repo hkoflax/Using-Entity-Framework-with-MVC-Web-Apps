@@ -13,7 +13,6 @@ namespace ComicBookShared.Data
     public static class Repository
     {
         /// <summary>
-        /// Private method that returns a database context.
         /// </summary>
         /// <returns>An instance of the Context class.</returns>
         static Context GetContext()
