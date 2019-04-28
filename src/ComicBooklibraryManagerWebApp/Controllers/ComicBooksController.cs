@@ -20,10 +20,12 @@ namespace ComicBookLibraryManagerWebApp.Controllers
     {
         private ComicBookRepository _comicBookRepository = null;
         private SeriesRepository _seriesRepository = null;
+        private ArtistRepository _artistRepository = null;
         public ComicBooksController()
         {
             _comicBookRepository = new ComicBookRepository(Context);
             _seriesRepository = new SeriesRepository(Context);
+            _artistRepository = new ArtistRepository(Context);
         }
         public ActionResult Index()
         {
@@ -62,7 +64,7 @@ namespace ComicBookLibraryManagerWebApp.Controllers
             var viewModel = new ComicBooksAddViewModel();
 
             // TODO Pass the Context class to the view model "Init" method.
-            viewModel.Init(Repository,_seriesRepository);
+            viewModel.Init(Repository,_seriesRepository,_artistRepository);
 
             return View(viewModel);
         }
@@ -86,7 +88,7 @@ namespace ComicBookLibraryManagerWebApp.Controllers
             }
 
             // TODO Pass the Context class to the view model "Init" method.
-            viewModel.Init(Repository,_seriesRepository);
+            viewModel.Init(Repository,_seriesRepository,_artistRepository);
 
             return View(viewModel);
         }
@@ -111,7 +113,7 @@ namespace ComicBookLibraryManagerWebApp.Controllers
             {
                 ComicBook = comicBook
             };
-            viewModel.Init(Repository,_seriesRepository);
+            viewModel.Init(Repository,_seriesRepository,_artistRepository);
 
             return View(viewModel);
         }
@@ -133,7 +135,7 @@ namespace ComicBookLibraryManagerWebApp.Controllers
                 return RedirectToAction("Detail", new { id = comicBook.Id });
             }
 
-            viewModel.Init(Repository,_seriesRepository);
+            viewModel.Init(Repository,_seriesRepository,_artistRepository);
 
             return View(viewModel);
         }
