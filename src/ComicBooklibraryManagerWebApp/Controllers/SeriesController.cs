@@ -1,4 +1,6 @@
-﻿using ComicBookShared.Models;
+﻿using ComicBooklibraryManagerWebApp.Controllers;
+using ComicBookShared.Data;
+using ComicBookShared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +13,17 @@ namespace ComicBookLibraryManagerWebApp.Controllers
     /// <summary>
     /// Controller for the "Series" section of the website.
     /// </summary>
-    public class SeriesController : Controller
+    public class SeriesController : BaseController
     {
+        private SeriesRepository _seriesRepository = null;
+        public SeriesController()
+        {
+            _seriesRepository = new SeriesRepository(Context);
+        }
         public ActionResult Index()
         {
             // TODO Get the series list.
-            var series = new List<Series>();
+            var series = _seriesRepository.GetList();
 
             return View(series);
         }
@@ -29,7 +36,7 @@ namespace ComicBookLibraryManagerWebApp.Controllers
             }
 
             // TODO Get the series.
-            var series = new Series();
+            var series = _seriesRepository.Get((int)id);
 
             if (series == null)
             {
@@ -58,7 +65,7 @@ namespace ComicBookLibraryManagerWebApp.Controllers
 
             if (ModelState.IsValid)
             {
-                // TODO Add the series.
+                _seriesRepository.Add(series);
 
                 TempData["Message"] = "Your series was successfully added!";
 
@@ -76,7 +83,8 @@ namespace ComicBookLibraryManagerWebApp.Controllers
             }
 
             // TODO Get the series.
-            var series = new Series();
+            var series = _seriesRepository
+                .Get((int)id, includeRelatedEntities:false);
 
             if (series == null)
             {
@@ -94,6 +102,7 @@ namespace ComicBookLibraryManagerWebApp.Controllers
             if (ModelState.IsValid)
             {
                 // TODO Update the series.
+                _seriesRepository.Update(series);
 
                 TempData["Message"] = "Your series was successfully updated!";
 
@@ -111,7 +120,7 @@ namespace ComicBookLibraryManagerWebApp.Controllers
             }
 
             // TODO Get the series.
-            var series = new Series();
+            var series = _seriesRepository.Get((int)id);
 
             if (series == null)
             {
@@ -125,6 +134,7 @@ namespace ComicBookLibraryManagerWebApp.Controllers
         public ActionResult Delete(int id)
         {
             // TODO Delete the series.
+            _seriesRepository.Delete(id);
 
             TempData["Message"] = "Your series was successfully deleted!";
 
@@ -138,17 +148,18 @@ namespace ComicBookLibraryManagerWebApp.Controllers
         /// <param name="series">The series to validate.</param>
         private void ValidateSeries(Series series)
         {
-            //// If there aren't any "Title" field validation errors...
-            //if (ModelState.IsValidField("Title"))
-            //{
-            //    // Then make sure that the provided title is unique.
-            //    // TODO Call method to check if the title is available.
-            //    if (false)
-            //    {
-            //        ModelState.AddModelError("Title",
-            //            "The provided Title is in use by another series.");
-            //    }
-            //}
+            // If there aren't any "Title" field validation errors...
+            if (ModelState.IsValidField("Title"))
+            {
+                // Then make sure that the provided title is unique.
+                // TODO Call method to check if the title is available.
+                if (_seriesRepository.SerieshasTitle(
+                    series.Id,series.Title))
+                {
+                    ModelState.AddModelError("Title",
+                        "The provided Title is in use by another series.");
+                }
+            }
         }
     }
 }
